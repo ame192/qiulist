@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Song list</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
+
 <body>
     <div align=center>
-    <input type="text" id="search-input" placeholder=搜索歌名或歌手>
-    <select id="genre-select"></select>
+        <input type="text" id="search-input" placeholder=搜索歌名或歌手>
+        <select id="genre-select"></select>
 
-    <table id="song-list">
-        <thead>
-            <tr>
-                <th>歌名</th>
-                <th>歌手</th>
-                <th>类别</th>
-            </tr>
-        </thead>
-    <tbody id="song-details">
-        <!-- Song data will be added here by the script -->
-    </tbody>
-</table>
+        <table id="song-list">
+            <thead>
+                <tr>
+                    <th>歌名</th>
+                    <th>歌手</th>
+                    <th>类别</th>
+                </tr>
+            </thead>
+            <tbody id="song-details">
+                <!-- Song data will be added here by the script -->
+            </tbody>
+        </table>
 
-    <script src="script.js" charset="utf-8"></script>
+        <script src="script.js" charset="utf-8"></script>
     </div>
 </body>
+
 </html>
