@@ -2,11 +2,11 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f9fa;
+    background-color: #ffdab9;
 }
 
 table {
-  max-width: 500px;
+    width:100%;
     border-collapse: collapse;
     margin-left: 20px;
     margin-bottom: 20px;
