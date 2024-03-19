@@ -61,7 +61,7 @@ var app = new Vue({
   },
   mounted() {
     // CSV file path
-    var csvFilePath = 'songlist.csv';
+    var csvFilePath = '/songlist.csv';
 
     // Make a fetch request to get the CSV file
     fetch(csvFilePath)

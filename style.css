@@ -4,7 +4,17 @@ body {
     padding: 0;
     background-color: #fee2a5;
 }
-
+.profile-image{
+    border-radius:50%;
+    width: 200px;
+    position: relative;
+}
+img{
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
 table {
     width:auto;
     border-collapse: collapse;
@@ -52,7 +62,12 @@ input, select {
 
 @media only screen and (hover: none) and (pointer: coarse){
     body{
-    width: auto;
+    width: 100%;
+    font-size:20px;
+    }
+    input,select,table,.link-button, .copy-button{
+        font-size:28px;
+        width: auto;
     }
 }
 
