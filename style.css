@@ -2,14 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #ffdab9;
+    background-color: #fee2a5;
 }
 
 table {
-    width:100%;
+    width:auto;
     border-collapse: collapse;
     margin-left: 20px;
     margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+
 }
 
 table, th, td {
@@ -24,28 +27,43 @@ th {
 td {
     padding: 15px;
     text-align: center;
+    background-color: #FFFBF5;
 }
 
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #FFFBF5;
 }
 
 tr:hover {
-    background-color: #ddd;
+    background-color: #e28181;
 }
 
 input, select {
-    width: 100%;
+    width: auto;
     padding: 12px 20px;
     margin: 8px 0;
+    margin-right: 8px;
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    border-radius:15px;
+    text-align:center;
 }
 
-@media screen and (min-width: 768px) {
-    input, select {
-        width: auto;
-        margin: 20px;
+@media only screen and (hover: none) and (pointer: coarse){
+    body{
+    width: auto;
     }
 }
+
+.link-button, .copy-button{
+    padding: 6px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+
