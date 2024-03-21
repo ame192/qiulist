@@ -5,6 +5,15 @@ var app = new Vue({
         selectedGenre: '',
         songs: [],
         genres: [],
+        showCopyConfirmation: false,
+        copiedSongName: '',
+        showBackToTop: false,
+    },
+  created() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
     },
     computed: {
         filteredSongs() {
@@ -20,22 +29,22 @@ var app = new Vue({
             });
         }
     },
+    
   methods: {
     copyToClipboard(songName) {
       var tempInput = document.createElement("input");
-      tempInput.setAttribute("value", songName);
+      tempInput.setAttribute("value", "点歌 " + songName);
       document.body.appendChild(tempInput);
       tempInput.select();
-
-      var clipboard = new ClipboardJS(tempInput);
-      clipboard.on("success", () => {
-        console.log('Song name copied to the clipboard:', songName);
-        clipboard.destroy();
-        document.body.removeChild(tempInput);
-      });
-
-      tempInput.focus();
       document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      this.showCopyConfirmation = true;
+      this.copiedSongName = "点歌 " + songName;
+          // Hide the confirmation message after 3 seconds (adjust as needed)
+          setTimeout(() => {
+              this.showCopyConfirmation = false;
+          }, 3000);
+    console.log('Song name copied to the clipboard:', songName);
     },
     parseCSV(file) {
       Papa.parse(file, {
@@ -56,8 +65,31 @@ var app = new Vue({
       return genres;
     },
     navigateTo(path) {
-            window.location.href = path;
+      //window.location.href = path;
+      window.open(path,'_blank').focus();
     },
+    scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+    },
+    handleScroll() {
+            if (window.pageYOffset != 0) {
+                this.showBackToTop = true;
+            } else {
+                this.showBackToTop = false;
+            }
+    },
+    copyRandomSongToClipboard(){
+      if(this.songs.length>0){
+        const randomIndex = Math.floor(Math.random()*this.songs.length);
+        const randomSong = this.songs[randomIndex];
+        this.copyToClipboard(randomSong.name);
+      }
+
+    },
+    
   },
   mounted() {
     // CSV file path

@@ -12,53 +12,67 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.css" rel="stylesheet">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <meta charset="utf-8" />
 </head>
 
 <body>
-    <div id="app" align="center">
-        <div class="profile-image">
-            <img src="android-chrome-192x192.png">
+    <div id="app">
+        <div class="profile-image"><img src="android-chrome-192x192.png"></div>
+        <p style="font-size:50px; text-align:center"> &nbsp; 听个球！
+        </p>
+        <button v-on:click="copyRandomSongToClipboard" class="random-song-button">
+            <i class="fa-solid fa-dice"></i>  &nbsp; 不知道听啥？抽个盲盒！ <i class="fa-solid fa-dice"></i>
+        </button>
+        <div class="list-container">
+            <div class="button-container">
+                <button class="link-button" @click="navigateTo('https://space.bilibili.com/3494377892612607/')">
+                    <i class="fa-solid fa-house"></i> 个人空间
+                </button>
+                <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
+                    <i class="fa-regular fa-circle-play"></i> 直播间
+                </button>
+            </div>
+            <div class="search-container">
+                <input type="text" v-model="searchInput" placeholder="搜索歌名或歌手">
+                <select v-model="selectedGenre">
+                    <option disabled value="">分类(？)</option>
+                    <option v-for="genre in genres" :value="genre">{{genre}}</option>
+                </select>
+            </div>
+            <table class="table-container">
+                <thead>
+                    <tr>
+                        <th>歌名</th>
+                        <th>歌手</th>
+                        <th>类别</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="song-details">
+                    <tr v-for="song in filteredSongs" :key="song.name">
+                        <td>{{song.name}}</td>
+                        <td>{{song.artist}}<j /td>
+                        <td>{{song.genre}}</td>
+                        <td>
+                            <button class="copy-button" @click="copyToClipboard(song.name)"><i
+                                    class="fa-regular fa-copy"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <p style="font-size:20px; text-align:center">听个球！</p>
-        <div class="header">
-            <button class="link-button" @click="navigateTo('https://space.bilibili.com/3494377892612607/')">
-                <i class="fa-solid fa-house"></i> 个人空间
-            </button>
-            &nbsp;
-            <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
-                <i class="fa-regular fa-circle-play"></i> 直播间
-            </button>
+        <a href="#" class="back-to-top" :class="{ 'show': showBackToTop } " @click="scrollToTop">
+            <i class="fa-solid fa-caret-up"></i>TOP
+        </a>
+        <div v-if="showCopyConfirmation" class="copy-confirmation">
+            <i class="fa-regular fa-circle-check"></i> &nbsp; "{{copiedSongName}}" 已复制到剪贴板！
         </div>
-        <input type="text" v-model="searchInput" placeholder="搜索歌名或歌手">
-        <select v-model="selectedGenre">
-            <option disabled value="">选择分类</option>
-            <option v-for="genre in genres" :value="genre">{{genre}}</option>
-        </select>
-        <table>
-            <thead>
-                <tr>
-                    <th>歌名</th>
-                    <th>歌手</th>
-                    <th>类别</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="song-details">
-                <tr v-for="song in filteredSongs" :key="song.name">
-                    <td>{{song.name}}</td>
-                <td>{{song.artist}}<j/td>
-                    <td>{{song.genre}}</td>
-                    <td>
-                        <button class="copy-button" @click="copyToClipboard(song.name)">复制</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
 
+    </div>
     <script src="clipboard.min.js"></script>
     <script src="papaparse.min.js"></script>
     <script src="vue.min.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>
