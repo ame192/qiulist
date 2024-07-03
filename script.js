@@ -17,7 +17,8 @@ var app = new Vue({
         timePacific: '',
         showClock: true,
         tablePosition: null,
-        nsongs: 0
+        nsongs: 0,
+        last_timer: null
     },
   created() {
         window.addEventListener('scroll', this.handleScroll);
@@ -30,50 +31,49 @@ var app = new Vue({
     },
     computed: {
         filteredSongs() {
-            var searchInputValue = this.searchInput.toLowerCase();
-            var genreFilter = this.selectedGenre.toLowerCase();
-        
+            var searchInputValue = this.searchInput;
+            var genreFilter = this.selectedGenre;
             return this.songs.filter(function(song) {
-                var nameMatch = song.name.toLowerCase().includes(searchInputValue);
-                var artistMatch = song.artist.toLowerCase().includes(searchInputValue);
-                var genreMatch = !genreFilter || song.genre === genreFilter || '全部'===genreFilter;
-        
-                return (nameMatch || artistMatch) && genreMatch;
+              if (song.genre == undefined) return false;
+              var nameMatch = song.name.includes(searchInputValue);
+              var artistMatch = song.artist.includes(searchInputValue);
+              var genreMatch = genreFilter == "" || song.genre === genreFilter || '全部' === genreFilter;
+              return (nameMatch || artistMatch) && genreMatch;
             });
-        }
-    },
-    
+    }
+  },
+
   methods: {
-    getTimeForZone(timezone){
-      const options = { hour: '2-digit', minute: '2-digit'};
-        const formatter = new Intl.DateTimeFormat('en-US', { timeZone: timezone, ...options });
-        return formatter.format(new Date());
+    getTimeForZone(timezone) {
+      const options = { hour: '2-digit', minute: '2-digit' };
+      const formatter = new Intl.DateTimeFormat('en-US', { timeZone: timezone, ...options });
+      return formatter.format(new Date());
     },
     updateClock() {
-        this.timeBeijing = this.getTimeForZone('Asia/Shanghai');
-        this.timeCentralEurope = this.getTimeForZone('Europe/Berlin');
-        this.timePacific = this.getTimeForZone('America/Los_Angeles');
-      },
-    setRotationSpeed(speed){
-
-        this.fast = true;
-        this.supriseText = "救救球球！";
-        var speed = Math.random()>0.5? '0.35s' : '0.1s';
-        if(this.firstTime) {
-          this.firstTime = false;
-          this.rotationSpeed = '0.35s';
-          return ;
-        }
-        this.rotationSpeed = speed;
+      this.timeBeijing = this.getTimeForZone('Asia/Shanghai');
+      this.timeCentralEurope = this.getTimeForZone('Europe/Berlin');
+      this.timePacific = this.getTimeForZone('America/Los_Angeles');
     },
-    setRotationFast(){
-        this.fast = true;
-        this.supriseText = "救救球球！";
-        var speed = '0.05s';
-        this.rotationSpeed = speed;
+    setRotationSpeed(speed) {
+
+      this.fast = true;
+      this.supriseText = "救救球球！";
+      var speed = Math.random() > 0.5 ? '0.35s' : '0.1s';
+      if (this.firstTime) {
+        this.firstTime = false;
+        this.rotationSpeed = '0.35s';
+        return;
+      }
+      this.rotationSpeed = speed;
+    },
+    setRotationFast() {
+      this.fast = true;
+      this.supriseText = "救救球球！";
+      var speed = '0.05s';
+      this.rotationSpeed = speed;
     },
 
-    stopRotationSpeed(){
+    stopRotationSpeed() {
       this.fast = false;
       this.rotationSpeed = '10s';
     },
@@ -86,11 +86,12 @@ var app = new Vue({
       document.body.removeChild(tempInput);
       this.showCopyConfirmation = true;
       this.copiedSongName = "点歌 " + songName;
-          // Hide the confirmation message after 3 seconds (adjust as needed)
-          setTimeout(() => {
-              this.showCopyConfirmation = false;
-          }, 3000);
-    console.log('Song name copied to the clipboard:', songName);
+      if (this.last_timer) clearTimeout(this.last_timer);
+      // Hide the confirmation message after 3 seconds (adjust as needed)
+      this.last_timer = setTimeout(() => {
+        this.showCopyConfirmation = false;
+      }, 3000);
+      console.log('Song name copied to the clipboard:', songName);
     },
     parseCSV(file) {
       Papa.parse(file, {
@@ -114,32 +115,32 @@ var app = new Vue({
     },
     navigateTo(path) {
       //window.location.href = path;
-      window.open(path,'_blank').focus();
+      window.open(path, '_blank').focus();
     },
     scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     },
     handleScroll() {
-            if (window.scrollY != 0) {
-                this.showBackToTop = true;
-            } else {
-                this.showBackToTop = false;
-            }
-          const scroolTop = window.scrollY || document.documentElement.scrollTop;
-          this.showClock = scroolTop < this.tablePosition;
+      if (window.scrollY != 0) {
+        this.showBackToTop = true;
+      } else {
+        this.showBackToTop = false;
+      }
+      const scroolTop = window.scrollY || document.documentElement.scrollTop;
+      this.showClock = scroolTop < this.tablePosition;
     },
-    copyRandomSongToClipboard(){
-      if(this.songs.length>0){
-        const randomIndex = Math.floor(Math.random()*this.songs.length);
+    copyRandomSongToClipboard() {
+      if (this.songs.length > 0) {
+        const randomIndex = Math.floor(Math.random() * this.songs.length);
         const randomSong = this.songs[randomIndex];
         this.copyToClipboard(randomSong.name);
       }
 
     },
-    
+
   },
   mounted() {
     // CSV file path
@@ -156,8 +157,8 @@ var app = new Vue({
     this.tablePosition = document.getElementById('song-table').offsetTop;
 
   },
-  beforeDestroy(){
-      window.removeEventListener('scroll', this.handleScroll);
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 
 });
