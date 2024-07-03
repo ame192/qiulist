@@ -36,7 +36,7 @@ var app = new Vue({
             return this.songs.filter(function(song) {
                 var nameMatch = song.name.toLowerCase().includes(searchInputValue);
                 var artistMatch = song.artist.toLowerCase().includes(searchInputValue);
-                var genreMatch = !genreFilter || song.genre.toLowerCase() === genreFilter || '全部'===genreFilter;
+                var genreMatch = !genreFilter || song.genre === genreFilter || '全部'===genreFilter;
         
                 return (nameMatch || artistMatch) && genreMatch;
             });
