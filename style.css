@@ -439,8 +439,8 @@ body {
 @media only screen and (hover: none) and (pointer: coarse) {
 
     input,
-    select,
-    .link-button {
+    select
+    {
         align-items: center;
         width: 100%;
         font-size: 30px;
@@ -495,5 +495,15 @@ body {
         text-align: center;
         max-height: 30px;
     }
+.button-container{
+    display:flex;
+}
+    .link-button {
+        align-items: center;
+        width: 100%;
+        font-size: 18px;
+        height: 25px;
+    }
+
 
 }
