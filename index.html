@@ -17,19 +17,43 @@
 
 <body>
     <div id="app">
-        <div class="profile-image"><img src="android-chrome-192x192.png"></div>
-        <p style="font-size:50px; text-align:center"> &nbsp; 听个球！
-        </p>
-        <button v-on:click="copyRandomSongToClipboard" class="random-song-button">
-            <i class="fa-solid fa-dice"></i>  &nbsp; 不知道听啥？抽个盲盒！ <i class="fa-solid fa-dice"></i>
-        </button>
-        <div class="list-container">
+
+        <div id="world-clock" v-show="showClock">
+            <div class="time-zone">
+                北京时间: {{timeBeijing}}
+            </div>
+            <div class="time-zone">
+                欧洲中部时间: {{timeCentralEurope}}
+            </div>
+            <div class="time-zone">
+                太平洋时间: {{timePacific}}
+            </div>
+
+        </div>
+    
+        <div class="player">
+            <!-- <p style="font-size:35px; text-align:center"> &nbsp; 听个球！</p> -->
+            <div class="profile-image" :style="{animationDuration: rotationSpeed}"><img src="android-chrome-512x512.png"></div>
+                <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="controls">
+                <button> <i class="fas fa-stop" @click="stopRotationSpeed()"></i> </button>
+                <button class="play-button" @click="setRotationSpeed('+')"> <i class="fa-regular fa-circle-play"></i></button>
+                <button> <i class="fas fa-forward" @click="setRotationFast()"></i></button>
+            </div>
+            <button v-on:click="copyRandomSongToClipboard" class="random-song-button">
+                <i class="fa-solid fa-dice" ></i>  &nbsp; 不知道听啥？抽个盲盒！ <i class="fa-solid fa-dice"></i>
+            </button>
+
+        </div>
+                <div v-cloak class="list-container">
             <div class="button-container">
                 <button class="link-button" @click="navigateTo('https://space.bilibili.com/3494377892612607/')">
                     <i class="fa-solid fa-house"></i> 个人空间
                 </button>
                 <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
-                    <i class="fa-regular fa-circle-play"></i> 直播间
+                    <i class="fa-brands fa-bilibili"></i> 直播间
                 </button>
             </div>
             <div class="search-container">
@@ -39,7 +63,7 @@
                     <option v-for="genre in genres" :value="genre">{{genre}}</option>
                 </select>
             </div>
-            <table class="table-container">
+            <table v-cloak class="table-container" id="song-table">
                 <thead>
                     <tr>
                         <th>歌名</th>
@@ -49,30 +73,39 @@
                     </tr>
                 </thead>
                 <tbody id="song-details">
-                    <tr v-for="song in filteredSongs" :key="song.name">
+                    <tr v-for="song in filteredSongs" :key="song.name" @click="copyToClipboard(song.name)">
                         <td>{{song.name}}</td>
-                        <td>{{song.artist}}<j /td>
+                        <td>{{song.artist}}</td>
                         <td>{{song.genre}}</td>
                         <td>
-                            <button class="copy-button" @click="copyToClipboard(song.name)"><i
-                                    class="fa-regular fa-copy"></i></button>
+                            <button class="copy-button" ><i class="fa-regular fa-copy"></i></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
+
+            <div v-cloak class="text-container">
+                <p>目前收录共 {{nsongs}} 首歌</p> 
+            </div>
+
         </div>
         <a href="#" class="back-to-top" :class="{ 'show': showBackToTop } " @click="scrollToTop">
             <i class="fa-solid fa-caret-up"></i>TOP
         </a>
-        <div v-if="showCopyConfirmation" class="copy-confirmation">
+        <div v-cloak v-if="showCopyConfirmation" class="copy-confirmation">
             <i class="fa-regular fa-circle-check"></i> &nbsp; "{{copiedSongName}}" 已复制到剪贴板！
         </div>
-
+    <footer>
+        <p>Designed by <a href="https://space.bilibili.com/1596728">Kid魔术师</a> | 
+        <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备2024213013号</a></p>
+    </footer>
     </div>
+    
     <script src="clipboard.min.js"></script>
     <script src="papaparse.min.js"></script>
     <script src="vue.min.js"></script>
     <script src="script.js"></script>
-</body>
-
-</html>
+    
+    </body>
+    
+    </html>

@@ -8,9 +8,22 @@ var app = new Vue({
         showCopyConfirmation: false,
         copiedSongName: '',
         showBackToTop: false,
+        rotationSpeed: '10s',
+        fast: false,
+        supriseText: '什么东西？点点看',
+        firstTime: true,
+        timeBeijing: '',
+        timeCentralEurope: '',
+        timePacific: '',
+        showClock: true,
+        tablePosition: null,
+        nsongs: 0
     },
   created() {
         window.addEventListener('scroll', this.handleScroll);
+        this.updateClock();
+        setInterval(this.updateClock, 1000);
+        console.log('Initial state of showCopyConfirmation:', this.showCopyConfirmation);
     },
     destroyed() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -23,7 +36,7 @@ var app = new Vue({
             return this.songs.filter(function(song) {
                 var nameMatch = song.name.toLowerCase().includes(searchInputValue);
                 var artistMatch = song.artist.toLowerCase().includes(searchInputValue);
-                var genreMatch = !genreFilter || song.genre.toLowerCase() === genreFilter;
+                var genreMatch = !genreFilter || song.genre.toLowerCase() === genreFilter || '全部'===genreFilter;
         
                 return (nameMatch || artistMatch) && genreMatch;
             });
@@ -31,6 +44,39 @@ var app = new Vue({
     },
     
   methods: {
+    getTimeForZone(timezone){
+      const options = { hour: '2-digit', minute: '2-digit'};
+        const formatter = new Intl.DateTimeFormat('en-US', { timeZone: timezone, ...options });
+        return formatter.format(new Date());
+    },
+    updateClock() {
+        this.timeBeijing = this.getTimeForZone('Asia/Shanghai');
+        this.timeCentralEurope = this.getTimeForZone('Europe/Berlin');
+        this.timePacific = this.getTimeForZone('America/Los_Angeles');
+      },
+    setRotationSpeed(speed){
+
+        this.fast = true;
+        this.supriseText = "救救球球！";
+        var speed = Math.random()>0.5? '0.35s' : '0.1s';
+        if(this.firstTime) {
+          this.firstTime = false;
+          this.rotationSpeed = '0.35s';
+          return ;
+        }
+        this.rotationSpeed = speed;
+    },
+    setRotationFast(){
+        this.fast = true;
+        this.supriseText = "救救球球！";
+        var speed = '0.05s';
+        this.rotationSpeed = speed;
+    },
+
+    stopRotationSpeed(){
+      this.fast = false;
+      this.rotationSpeed = '10s';
+    },
     copyToClipboard(songName) {
       var tempInput = document.createElement("input");
       tempInput.setAttribute("value", "点歌 " + songName);
@@ -52,8 +98,10 @@ var app = new Vue({
         complete: (results) => {
           this.songs = results.data;
           this.genres = this.getUniqueGenres(this.songs);
+          this.genres.push('全部');
         }
       });
+      this.nsongs = this.songs.length;
     },
     getUniqueGenres(songs) {
       var genres = [];
@@ -75,11 +123,13 @@ var app = new Vue({
             });
     },
     handleScroll() {
-            if (window.pageYOffset != 0) {
+            if (window.scrollY != 0) {
                 this.showBackToTop = true;
             } else {
                 this.showBackToTop = false;
             }
+          const scroolTop = window.scrollY || document.documentElement.scrollTop;
+          this.showClock = scroolTop < this.tablePosition;
     },
     copyRandomSongToClipboard(){
       if(this.songs.length>0){
@@ -93,8 +143,7 @@ var app = new Vue({
   },
   mounted() {
     // CSV file path
-    var csvFilePath = '/songlist.csv';
-
+    var csvFilePath = '/songlist_sort.csv';
     // Make a fetch request to get the CSV file
     fetch(csvFilePath)
       .then(response => response.text())
@@ -104,5 +153,11 @@ var app = new Vue({
       .catch(error => {
         console.error('Error fetching CSV file:', error);
       });
+    this.tablePosition = document.getElementById('song-table').offsetTop;
+
+  },
+  beforeDestroy(){
+      window.removeEventListener('scroll', this.handleScroll);
   }
+
 });
