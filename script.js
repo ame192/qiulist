@@ -1,45 +1,47 @@
 var app = new Vue({
-    el: '#app',
-    data: {
-        searchInput: '',
-        selectedGenre: '',
-        songs: [],
-        genres: [],
-        showCopyConfirmation: false,
-        copiedSongName: '',
-        showBackToTop: false,
-        rotationSpeed: '10s',
-        fast: false,
-        supriseText: '什么东西？点点看',
-        firstTime: true,
-        timeBeijing: '',
-        timeCentralEurope: '',
-        timePacific: '',
-        showClock: true,
-        tablePosition: null,
-        nsongs: 0,
-        last_timer: null
-    },
+  el: '#app',
+  data: {
+    searchInput: '',
+    selectedGenre: '',
+    songs: [],
+    genres: [],
+    showCopyConfirmation: false,
+    copiedSongName: '',
+    showBackToTop: false,
+    rotationSpeed: '10s',
+    fast: false,
+    supriseText: '什么东西？点点看',
+    firstTime: true,
+    timeBeijing: '',
+    timeCentralEurope: '',
+    timePacific: '',
+    showClock: true,
+    tablePosition: null,
+    last_timer: null
+  },
   created() {
-        window.addEventListener('scroll', this.handleScroll);
-        this.updateClock();
-        setInterval(this.updateClock, 1000);
-        console.log('Initial state of showCopyConfirmation:', this.showCopyConfirmation);
-    },
-    destroyed() {
-        window.removeEventListener('scroll', this.handleScroll);
-    },
-    computed: {
-        filteredSongs() {
-            var searchInputValue = this.searchInput;
-            var genreFilter = this.selectedGenre;
-            return this.songs.filter(function(song) {
-              if (song.genre == undefined) return false;
-              var nameMatch = song.name.includes(searchInputValue);
-              var artistMatch = song.artist.includes(searchInputValue);
-              var genreMatch = genreFilter == "" || song.genre === genreFilter || '全部' === genreFilter;
-              return (nameMatch || artistMatch) && genreMatch;
-            });
+    window.addEventListener('scroll', this.handleScroll);
+    this.updateClock();
+    setInterval(this.updateClock, 1000);
+  },
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  computed: {
+    filteredSongs() {
+      var searchInputValue = this.searchInput;
+      var genreFilter = this.selectedGenre;
+      return this.songs.filter(function (song) {
+        if (!song) return false;
+        var nameMatch = song.name.includes(searchInputValue);
+        var artistMatch = song.artist.includes(searchInputValue);
+        var genreMatch =  genreFilter=="" ||song.genre === genreFilter || '全部' === genreFilter;
+        //if ((nameMatch || artistMatch) && genreMatch) console.log("OK", song.name)
+        //if(nameMatch == undefined ) console.log("?");
+        //if(genreMatch == undefined ) console.log("?");
+        //if(artistMatch == undefined ) console.log("?");
+        return (nameMatch || artistMatch) && genreMatch;
+      });
     }
   },
 
@@ -102,7 +104,6 @@ var app = new Vue({
           this.genres.push('全部');
         }
       });
-      this.nsongs = this.songs.length;
     },
     getUniqueGenres(songs) {
       var genres = [];
