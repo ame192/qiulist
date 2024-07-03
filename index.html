@@ -17,7 +17,6 @@
 
 <body>
     <div id="app">
-
         <div id="world-clock" v-show="showClock">
             <div class="time-zone">
                 北京时间: {{timeBeijing}}
@@ -28,34 +27,54 @@
             <div class="time-zone">
                 太平洋时间: {{timePacific}}
             </div>
-
+    
         </div>
     
-        <div class="player">
-            <!-- <p style="font-size:35px; text-align:center"> &nbsp; 听个球！</p> -->
-            <div class="profile-image" :style="{animationDuration: rotationSpeed}"><img src="android-chrome-512x512.png"></div>
+        <div class="content">
+            <div class=" player">
+                <!-- <p style="font-size:35px; text-align:center"> &nbsp; 听个球！</p> -->
+                <div class="profile-image" :style="{animationDuration: rotationSpeed}"><img src="android-chrome-512x512.png">
+                </div>
                 <div class="progress-bar-container">
-                <div class="progress-bar"></div>
+                    <div class="progress-bar"></div>
+                </div>
+                <div class="controls">
+                    <button> <i class="fas fa-stop" @click="stopRotationSpeed()"></i> </button>
+                    <button class="play-button" @click="setRotationSpeed('+')"> <i
+                            class="fa-regular fa-circle-play"></i></button>
+                    <button> <i class="fas fa-forward" @click="setRotationFast()"></i></button>
+                </div>
+                <button v-on:click="copyRandomSongToClipboard" class="random-song-button">
+                    &nbsp;不知道听啥？<br> <i class="fa-solid fa-dice"></i> &nbsp; 抽个盲盒！ <i class="fa-solid fa-dice"></i>
+                </button>
             </div>
-            <div class="controls">
-                <button> <i class="fas fa-stop" @click="stopRotationSpeed()"></i> </button>
-                <button class="play-button" @click="setRotationSpeed('+')"> <i class="fa-regular fa-circle-play"></i></button>
-                <button> <i class="fas fa-forward" @click="setRotationFast()"></i></button>
-            </div>
-            <button v-on:click="copyRandomSongToClipboard" class="random-song-button">
-                <i class="fa-solid fa-dice" ></i>  &nbsp; 不知道听啥？抽个盲盒！ <i class="fa-solid fa-dice"></i>
-            </button>
+            <div class="intro-panel">
+                <h2 style="padding-bottom:0px;">球球</h2>
 
-        </div>
-                <div v-cloak class="list-container">
-            <div class="button-container">
-                <button class="link-button" @click="navigateTo('https://space.bilibili.com/3494377892612607/')">
-                    <i class="fa-solid fa-house"></i> 个人空间
-                </button>
-                <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
-                    <i class="fa-brands fa-bilibili"></i> 直播间
-                </button>
+                <hr style="height:2px;border-width:0;color:rgb(255, 3, 3);background-color:rgb(255, 0, 17)">
+                <div class="button-container">
+                
+                    <button class="link-button" @click="navigateTo('https://space.bilibili.com/3494377892612607/')">
+                        <i class="fa-brands fa-bilibili"></i> 个人空间
+                    </button>
+                    <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
+                        <i class="fa-solid fa-headphones" style="color:red;"></i> 直播间
+                    </button>
+
+                <hr style="height:2px;border-width:0;color:rgb(255, 3, 3);background-color:rgb(255, 0, 17)">
+                </div>
+                <p>爱若有声音，不止一场海啸</p>
+                <p>听歌全凭感觉来，只有音乐最安全。</p>
+                <p>全职非专业反差杂谈鸽势~ Q群：519157459</p>
             </div>
+        </div>
+        
+        
+        <!-- Below is the table-->
+        <div v-cloak class="list-container">
+            <!-- <h2 style="text-align: center; color:floralwhite; text-size-adjust:5em;">歌单!!!</h2> -->
+            <hr style="height:2px;border-width:0;color:rgb(251, 6, 6);background-color:rgb(0, 0, 0)">
+            <p></p>
             <div class="search-container">
                 <input type="text" v-model="searchInput" placeholder="搜索歌名或歌手">
                 <select v-model="selectedGenre">
@@ -78,16 +97,16 @@
                         <td>{{song.artist}}</td>
                         <td>{{song.genre}}</td>
                         <td>
-                            <button class="copy-button" ><i class="fa-regular fa-copy"></i></button>
+                            <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-
+        
             <div v-cloak class="text-container">
-                <p>目前收录共 {{nsongs}} 首歌</p> 
+                <p>目前收录共 {{nsongs}} 首歌</p>
             </div>
-
+        
         </div>
         <a href="#" class="back-to-top" :class="{ 'show': showBackToTop } " @click="scrollToTop">
             <i class="fa-solid fa-caret-up"></i>TOP
@@ -95,17 +114,18 @@
         <div v-cloak v-if="showCopyConfirmation" class="copy-confirmation">
             <i class="fa-regular fa-circle-check"></i> &nbsp; "{{copiedSongName}}" 已复制到剪贴板！
         </div>
-    <footer>
-        <p>Designed by <a href="https://space.bilibili.com/1596728">Kid魔术师</a> | 
-        <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备2024213013号</a></p>
-    </footer>
-    </div>
-    
-    <script src="clipboard.min.js"></script>
-    <script src="papaparse.min.js"></script>
-    <script src="vue.min.js"></script>
-    <script src="script.js"></script>
-    
-    </body>
-    
-    </html>
+        <footer>
+            <p>Designed by <a href="https://space.bilibili.com/1596728">Kid魔术师</a> |
+                <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备2024213013号</a>
+            </p>
+        </footer>
+        </div>
+        
+        <script src="clipboard.min.js"></script>
+        <script src="papaparse.min.js"></script>
+        <script src="vue.min.js"></script>
+        <script src="script.js"></script>
+        
+        </body>
+        
+        </html>
