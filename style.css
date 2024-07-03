@@ -46,7 +46,6 @@ body {
 }
 .intro-panel p{
     font-size:20px;
-
 }
 
 .profile-image {
@@ -445,7 +444,7 @@ body {
         align-items: center;
         width: 100%;
         font-size: 30px;
-        height: 70px;
+        height: 70kpx;
     }
 
     td,
@@ -491,10 +490,10 @@ body {
     }
 
     .random-song-button {
-        font-size: 40px;
+        font-size: 19px;
         align-items: center;
         text-align: center;
-        max-height: 70px;
+        max-height: 30px;
     }
 
 }
