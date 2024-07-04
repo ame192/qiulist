@@ -2,8 +2,9 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background:
-        #ffc371;
+        background: linear-gradient(135deg, #ff5f6d, #ffc371);
+      background-size: cover;
+      background-attachment: fixed
 }
 
 #app {
@@ -190,6 +191,7 @@ tr:hover {
     border-radius: 5px;
     padding: 10px;
     text-align: right;
+    display: none;
 }
 
 .time-zone {
