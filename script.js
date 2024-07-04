@@ -79,6 +79,22 @@ var app = new Vue({
       this.fast = false;
       this.rotationSpeed = '10s';
     },
+    copyQQToClipboard(songName) {
+      var tempInput = document.createElement("input");
+      tempInput.setAttribute("value", songName);
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
+      this.showCopyConfirmation = true;
+      this.copiedSongName = songName;
+      if (this.last_timer) clearTimeout(this.last_timer);
+      // Hide the confirmation message after 3 seconds (adjust as needed)
+      this.last_timer = setTimeout(() => {
+        this.showCopyConfirmation = false;
+      }, 3000);
+      console.log('Song name copied to the clipboard:', songName);
+    },
     copyToClipboard(songName) {
       var tempInput = document.createElement("input");
       tempInput.setAttribute("value", "点歌 " + songName);
