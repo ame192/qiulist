@@ -1,3 +1,4 @@
+
 var app = new Vue({
   el: '#app',
   data: {
@@ -17,7 +18,8 @@ var app = new Vue({
     timePacific: '',
     showClock: true,
     tablePosition: null,
-    last_timer: null
+    last_timer: null,
+    live: false
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
@@ -157,6 +159,12 @@ var app = new Vue({
       }
 
     },
+    async fetchData() {
+      const response = await fetch('/response.json');
+      const data = await response.json();
+      this.live = data.data.liveStatus;
+      console.log(this.live);
+    }
 
   },
   mounted() {
@@ -172,6 +180,7 @@ var app = new Vue({
         console.error('Error fetching CSV file:', error);
       });
     this.tablePosition = document.getElementById('song-table').offsetTop;
+    this.fetchData();
 
   },
   beforeDestroy() {

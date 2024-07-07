@@ -421,103 +421,124 @@ tr:hover {
 .back-to-top:hover{
     background-color: #005bb5;
 }
+ .blinking {
+     animation: blinkingText 1.2s infinite;
+     font-size: xx-small;
+     vertical-align: 120%;
+     text-align: left;
+     font-style: italic;
+     
+ }
+  @keyframes blinkingText {
+      0% {
+        color: rgb(245, 22, 96);
+      }
 
-.back-to-top.show {
-    opacity: 1;
-    transform: trasnslateX(0);
-    visibility: visible;
-}
+      50% {
+        color: transparent;
+      }
 
-.text-container {
-    flex: 1;
-    text-align: center;
-    font-size: 16px;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
-}
+      100% {
+        color: rgb(245, 22, 96);
+      }
+  }
 
-.back-to-top i {
-    margin-right: 5px;
-}
+ .back-to-top.show {
+     opacity: 1;
+     transform: trasnslateX(0);
+     visibility: visible;
+ }
 
-[v-cloak] {
-    display: none;
-}
+ .text-container {
+     flex: 1;
+     text-align: center;
+     font-size: 16px;
+     padding-bottom: 0px;
+     margin-bottom: 0px;
+ }
 
-footer {
-    text-align: center;
-    margin-top: 20px;
-    padding: 15px;
-    /* Choose a background color that fits your design */
-}
+ .back-to-top i {
+     margin-right: 5px;
+ }
 
-footer p {
-    margin: 0;
-    padding: 0;
-    color: #333;
-    /* Choose a text color that fits your design */
-}
+ [v-cloak] {
+     display: none;
+ }
 
-footer a {
-    color: #007bff;
-    /* Choose a link color that fits your design */
-}
+ footer {
+     text-align: center;
+     margin-top: 20px;
+     padding: 15px;
+     /* Choose a background color that fits your design */
+ }
 
-/* Optional: to stick the footer at the very bottom if the page content is short */
-html,
-body {
-    height: 100%;
-    margin: 0;
-}
+ footer p {
+     margin: 0;
+     padding: 0;
+     color: #333;
+     /* Choose a text color that fits your design */
+ }
 
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 120vh;
-}
+ footer a {
+     color: #007bff;
+     /* Choose a link color that fits your design */
+ }
 
-#app {
-    flex: 1;
-}
+ /* Optional: to stick the footer at the very bottom if the page content is short */
+ html,
+ body {
+     height: 100%;
+     margin: 0;
+ }
 
-@media only screen and (hover: none) and (pointer: coarse) {
+ body {
+     display: flex;
+     flex-direction: column;
+     min-height: 120vh;
+ }
 
-    input,
-    select {
-        align-items: center;
-        width: 100%;
-        font-size: 30px;
-        height: 70kpx;
-    }
+ #app {
+     flex: 1;
+ }
 
-    td,
-    th,
-    .copy-button {
-        align-items: center;
-        font-size: 35px;
-        height: 50px;
-    }
+ @media only screen and (hover: none) and (pointer: coarse) {
 
-    .profile-image {
-        width: 180px;
-        height: 180px;
-        border-radius: 50%;
-        border-style: solid;
-        border-width: 2px;
-        position: relative;
-        overflow: hidden;
-        animation: rotate 10s infinite linear;
-    }
+     input,
+     select {
+         align-items: center;
+         width: 100%;
+         font-size: 30px;
+         height: 70kpx;
+     }
 
-    .copy-confirmation {
-        font-size: 35px;
-    }
+     td,
+     th,
+     .copy-button {
+         align-items: center;
+         font-size: 35px;
+         height: 50px;
+     }
 
-    .back-to-top {
-        position: fixed;
-        padding-left: 12px;
-        padding-right: 8px;
-        padding-top: 6px;
+     .profile-image {
+         width: 180px;
+         height: 180px;
+         border-radius: 50%;
+         border-style: solid;
+         border-width: 2px;
+         position: relative;
+         overflow: hidden;
+         animation: rotate 10s infinite linear;
+     }
+
+     .copy-confirmation {
+         font-size: 35px;
+     }
+
+     .back-to-top {
+         position: fixed;
+         padding-left: 12px;
+         padding-right: 8px;
+         padding-top: 6px;
         padding-bottom: 6px;
         z-index: 9999;
         transition: opacity 0.3s, transform 0.3s;
