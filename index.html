@@ -94,16 +94,18 @@
                         <th class="artist">歌手</th>
                         <th class="genre">类别</th>
                         <th class="cpbutton"></th>
+                        <th class="bplay"></th>
                     </tr>
                 </thead>
                 <tbody id="song-details">
-                    <tr v-for="song in filteredSongs" :keys="song.name" @click="copyToClipboard(song.name)">
-                        <td class="songname">{{song.name}}</td>
-                        <td class="artist">{{song.artist}}</td>
-                        <td class="genre">{{song.genre}}</td>
-                        <td class="cpbutton">
+                    <tr v-for="song in filteredSongs" :keys="song.name" >
+                        <td class="songname" @click="copyToClipboard(song.name)">{{song.name}}</td>
+                        <td class="artist" @click="copyToClipboard(song.name)">{{song.artist}}</td>
+                        <td class="genre" @click="copyToClipboard(song.name)">{{song.genre}}</td>
+                        <td class="cpbutton" @click="copyToClipboard(song.name)">
                             <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                         </td>
+                        <td class="bplay"></td>
                     </tr>
                 </tbody>
             </table>

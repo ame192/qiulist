@@ -344,11 +344,15 @@ td.artist {
 
 th.genre,
 td.genre {
-    width: 25%;
+    width: 20%;
 }
 
 th.cpbutton,
 td.cpbutton {
+    width: 5%;
+}
+th.bplay,
+td.bplay {
     width: 5%;
 }
 

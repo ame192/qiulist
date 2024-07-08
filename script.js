@@ -163,7 +163,6 @@ var app = new Vue({
       const response = await fetch('/response.json');
       const data = await response.json();
       this.live = data.data.liveStatus;
-      console.log(this.live);
     }
 
   },
