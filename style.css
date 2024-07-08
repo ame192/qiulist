@@ -41,6 +41,7 @@ body {
 .intro-panel {
     flex: 1;
     padding: 20px;
+    position: relative;
 }
 
 .intro-panel h2 {
@@ -49,7 +50,26 @@ body {
 
 .intro-panel p {
     font-size: 20px;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
 }
+.intro-panel .intro-background{
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 95%;
+    height: 65%;
+    background: url('ForWeb.JPG') no-repeat center center;
+    background-size: cover;
+    opacity: 0.35; /* Adjust the transparency here */
+    pointer-events: none; /* Ensure the image does not interfere with button clicks */
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right:5%;
+    border-radius: 3%;
+}
+
+
 
 .profile-image {
     margin: 20px auto;
