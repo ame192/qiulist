@@ -42,6 +42,7 @@ body {
     flex: 1;
     padding: 20px;
     position: relative;
+    overflow: hidden;
 }
 
 .intro-panel h2 {
@@ -52,6 +53,11 @@ body {
     font-size: 20px;
     font-weight: 500;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    color: white; /* White text color */
+    padding: 5px; /* Add some padding to the text */
+    display: inline-block; /* Ensure background only covers the text */
+    border-radius: 5px; /* Optional: adds rounded corners */
 }
 .intro-panel .intro-background{
     position: absolute;
@@ -61,7 +67,7 @@ body {
     height: 65%;
     background: url('ForWeb.JPG') no-repeat center center;
     background-size: cover;
-    opacity: 0.35; /* Adjust the transparency here */
+    opacity: 0.75; /* Adjust the transparency here */
     pointer-events: none; /* Ensure the image does not interfere with button clicks */
     margin-top: 1%;
     margin-left: 2%;
@@ -69,7 +75,34 @@ body {
     border-radius: 3%;
 }
 
-
+.intro-text {
+    position: absolute; /* Position intro-text absolutely within the intro-panel */
+    top: 31%;
+    left: 0;
+    width: 95%;
+    height: 63.1%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 5%;
+    border-radius: 5px; /* Smooth rounded corners */
+    display: flex; /* Flex display to adjust content inside */
+    align-items: center; /* Vertically center content if needed */
+    justify-content: center; /* Horizontally center content if needed */
+    background-color: rgba(223, 31, 31, 0.194); /* Semi-transparent white background */
+    color: #333; /* Dark grey text color */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.112); /* Subtle shadow */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* Apple's system font */
+}
+.intro-text p {
+    width: 100%; /* Ensure paragraph takes up full width */
+    height: 100%; /* Ensure paragraph takes up full height */
+    font-size: 22px;
+    font-weight: 300; /* Light font weight for a sleek look */
+    border-radius: 10px; /* Smooth rounded corners */
+    margin: 0; /* Remove default margin */
+    padding-left: 10px;
+    line-height: 2.0; /* Add some line height for readability */
+}
 
 .profile-image {
     margin: 20px auto;
