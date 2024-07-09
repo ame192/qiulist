@@ -525,26 +525,6 @@ tr:hover {
 
  @media only screen and (hover: none) and (pointer: coarse) {
 
-     input,
-     select {
-         align-items: center;
-         width: 100%;
-         font-size: 30px;
-         height: 70kpx;
-     }
-
-     td,
-     th,
-     .copy-button {
-         align-items: center;
-         font-size: 35px;
-         height: 50px;
-     }
-
-    .copy-confirmation {
-        font-size: 35px;
-     }
-
     .random-song-button {
         font-size: 16px;
         align-items: center;
