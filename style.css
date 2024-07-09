@@ -190,15 +190,19 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      text-align: left;
      text-decoration: none;
      transition: background-color 0.5s ease;
+     display: flex;
      justify-content: center;
  }
-
  .link-button:hover {
     /* background-color: #f094a37a;*/
 
     background-color: #ffed2a24;
      color: rgb(27, 22, 24);
      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+ }
+ .intro-panel .link-button{
+    display: flex;
+    align-items: center;
  }
 
  .intro-panel .intro-background {
