@@ -124,7 +124,7 @@
         <a href="#" class="back-to-top" :class="{ 'show': showBackToTop } " @click="scrollToTop">
             <i style="padding-left:4px;" class="fa-solid fa-up-long"></i>
         </a>
-        <div v-cloak v-if="showCopyConfirmation" class="copy-confirmation">
+        <div v-cloak v-if="showCopyConfirmation" class="copy-confirmation" :class="{show:showCopyConfirmation}">
             <i class="fa-regular fa-circle-check"></i> &nbsp; "{{copiedSongName}}" 已复制到剪贴板！
         </div>
         <footer>

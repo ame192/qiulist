@@ -58,7 +58,7 @@
      border-width: 5px;
      overflow: hidden;
      border-radius: 50%;
-     animation: rotate infinite linear;
+     animation: normal-rotate 10s linear infinite;
  }
 
  .profile-image img {
@@ -103,16 +103,6 @@
     color: #ff2d55;
 }
 
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 img {
     display: inline;
     margin: 0 auto;
@@ -141,9 +131,25 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
     75% { transform: translateX(-5px); }
     100% { transform: translateX(0); }
 }
-
 .shake {
     animation: shake 0.3s ease-in-out;
+}
+@keyframes quick-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.quick-rotate {
+    animation: quick-rotate 0.5s linear;
+}
+
+@keyframes normal-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.normal-rotate {
+    animation: normal-rotate 10s linear infinite;
 }
 
  .intro-panel {
@@ -426,6 +432,11 @@ tr:hover {
     padding: 10px;
     border-radius: 5px;
     z-index: 9999;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+}
+.copy-confirmation.show {
+    opacity: 1; 
 }
 
 .back-to-top {

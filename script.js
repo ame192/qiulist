@@ -20,7 +20,7 @@ var app = new Vue({
     tablePosition: null,
     last_timer: null,
     live: false,
-    shaking:false
+    shaking:false,
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
@@ -89,10 +89,11 @@ var app = new Vue({
       tempInput.select();
       document.execCommand("copy");
       document.body.removeChild(tempInput);
-      this.showCopyConfirmation = true;
+
       this.copiedSongName = songName;
+      this.showCopyConfirmation = true;
+
       if (this.last_timer) clearTimeout(this.last_timer);
-      // Hide the confirmation message after 3 seconds (adjust as needed)
       this.last_timer = setTimeout(() => {
         this.showCopyConfirmation = false;
       }, 3000);
@@ -156,16 +157,19 @@ var app = new Vue({
       if (this.songs.length > 0) {
         const randomIndex = Math.floor(Math.random() * this.songs.length);
         const randomSong = this.songs[randomIndex];
-        this.copyToClipboard(randomSong.name);
         this.shakeButton();
+        setTimeout( () => {this.copyToClipboard(randomSong.name);}, 600);
+        ;
       }
 
     },
       shakeButton() {
             this.shaking = true;
+            this.rotationSpeed = '0.1s';
             setTimeout(() => {
                 this.shaking = false;
-            }, 300);
+                this.rotationSpeed = '10s';
+            }, 500);
         },
     async fetchData() {
       const response = await fetch('/response.json');
