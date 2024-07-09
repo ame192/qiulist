@@ -19,7 +19,8 @@ var app = new Vue({
     showClock: true,
     tablePosition: null,
     last_timer: null,
-    live: false
+    live: false,
+    shaking:false
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
@@ -156,9 +157,16 @@ var app = new Vue({
         const randomIndex = Math.floor(Math.random() * this.songs.length);
         const randomSong = this.songs[randomIndex];
         this.copyToClipboard(randomSong.name);
+        this.shakeButton();
       }
 
     },
+      shakeButton() {
+            this.shaking = true;
+            setTimeout(() => {
+                this.shaking = false;
+            }, 300);
+        },
     async fetchData() {
       const response = await fetch('/response.json');
       const data = await response.json();

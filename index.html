@@ -45,7 +45,7 @@
                             class="fa-regular fa-circle-play"></i></button>
                     <button> <i class="fas fa-forward" @click="setRotationFast()"></i></button>
                 </div>
-                <button v-on:click="copyRandomSongToClipboard" class="random-song-button">
+                <button v-on:click="copyRandomSongToClipboard" class="random-song-button" :class="{ shake:shaking}">
                     &nbsp;不知道听啥？<br> <i class="fa-solid fa-dice"></i> &nbsp; 抽个盲盒！ <i class="fa-solid fa-dice"></i>
                 </button>
             </div>
