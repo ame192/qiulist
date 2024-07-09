@@ -157,14 +157,14 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      padding: 20px;
      position: relative;
      overflow: hidden;
-     justify-content: center;
-     align-items: center;
+     justify-content: left;
+     align-items: left;
  }
 
  .intro-panel h2 {
      margin-top: 0;
      margin-bottom: 0;
-     text-align: center;
+     text-align: left;
      font-size : 26px;
      color: #ff2d55;
  }
@@ -175,7 +175,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      font-size: 1.2em;
      display: flex;
      gap: 10px;
-     justify-content: center;
+     justify-content: left;
      color:#df2a2a;
  }
 
@@ -187,7 +187,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      color: rgb(0, 0, 0);
      cursor: pointer;
      border-radius: 5px;
-     text-align: center;
+     text-align: left;
      text-decoration: none;
      transition: background-color 0.5s ease;
  }
@@ -206,7 +206,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      left: 0;
      width: 95%;
      height: 65%;
-     background: url('ForWeb.JPG') no-repeat center center;
+     /*background: url('ForWeb.JPG') no-repeat center center;*/
      background-size: cover;
      opacity: 0.68;
      pointer-events: none;
@@ -227,21 +227,23 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      margin-right: 5%;
      border-radius: 10px;
      display: flex;
-     align-items: center;
-     justify-content: center;
+     align-items: left;
+     justify-content: left;
      color: #000000;
-     background-color: rgba(0, 0, 0, 0.15);
+     /*background-color: rgba(1, 1, 1, 0.15);*/
  }
 
  .intro-text p {
-    text-align: center;
+    text-align: left;
     padding: 10px;
+    width: 80%;
+    height: 80%;
      font-size: 22px;
      font-weight: 400;
      margin: 0;
      line-height: 2.5;
-     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.75);
-     color: white;
+     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+     color: black;
 
  }
 
