@@ -190,6 +190,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      text-align: left;
      text-decoration: none;
      transition: background-color 0.5s ease;
+     justify-content: center;
  }
 
  .link-button:hover {
