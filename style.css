@@ -12,7 +12,7 @@
      min-height: 120vh;
      margin: 0;
      padding: 0;
-     background: linear-gradient(135deg, #fb5f4e, #ffc371);
+     background: linear-gradient(135deg, #fb0c43, #ffc371);
      background-size: cover;
      background-attachment: fixed
  }
@@ -126,9 +126,9 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
 }
 @keyframes shake {
     0% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    50% { transform: translateX(5px); }
-    75% { transform: translateX(-5px); }
+    25% { transform: translateX(-7px); }
+    50% { transform: translateX(7px); }
+    75% { transform: translateX(-7px); }
     100% { transform: translateX(0); }
 }
 .shake {
@@ -165,6 +165,8 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      margin-top: 0;
      margin-bottom: 0;
      text-align: center;
+     font-size : 26px;
+     color: #ff2d55;
  }
 
  .intro-panel .button-container {
@@ -242,6 +244,16 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      color: white;
 
  }
+
+.intro-panel .button-container button
+{
+    color: #333;
+
+}
+.intro-panel .button-container i {
+    color: #ff2d55; /* Ensuring icons and text inside buttons in the button-container are this color */
+}
+
 
 #world-clock {
     position: fixed;

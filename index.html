@@ -54,14 +54,14 @@
                 <hr style="height:2px;border-width:0;color:rgb(255, 3, 3);background-color:rgb(255, 0, 17)">
                 <div class="button-container">
                     <button class="link-button" @click="navigateTo('https://space.bilibili.com/3494377892612607/')">
-                        <i class="fa-brands fa-bilibili"></i> 个人空间
+                        <i class="fa-brands fa-bilibili" style="color: #ff2d55"></i> 个人空间
                     </button>
                     <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
-                        <i class="fa-solid fa-microphone-lines" :style="{ color: live? 'red':'DodgerBlue' } "></i> 直播间
+                        <i class="fa-solid fa-microphone-lines" :style="{ color: live? '#ff2d55':'lightslategray' } "></i> 直播间
                         <sup v-cloak v-if="live" class="blinking">LIVE!</sup>
                     </button>
                     <button class="link-button" @click="copyQQToClipboard('519157459')">
-                        <i class="fa-brands fa-qq" style="color:DodgerBlue;"></i>
+                        <i class="fa-brands fa-qq" style="color:#ff2d55;"></i>
                         <span style="font-size:18px; text-align: left; vertical-align: 5%;">QQ群 519157459</span>
                     </button>
 
