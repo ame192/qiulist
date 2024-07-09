@@ -175,8 +175,28 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      font-size: 1.2em;
      display: flex;
      gap: 10px;
-     justify-content: left;
      color:#df2a2a;
+ }
+ .button-container button{
+    display:flex;
+    align-items: center;
+    padding:0;
+    position:relative;
+    max-height: 25px;
+    width:fit-content;
+ }
+ .button-container button i {
+    color: #ff2d55;
+    margin-right: 8px;
+    position: relative;
+ }
+ .button-container sup{
+    font-size: 0.45em;
+    color: #ff411e;
+    margin:0;
+    position: absolute;
+    top:-5px;
+    right:-9px;
  }
 
  .intro-panel .link-button {
@@ -187,11 +207,13 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      color: rgb(0, 0, 0);
      cursor: pointer;
      border-radius: 5px;
+     outline:none;
      text-align: left;
+     padding: 10px;
      text-decoration: none;
-     transition: background-color 0.5s ease;
+     transition: background-color 0.3s ease;
      display: flex;
-     justify-content: center;
+     align-items: center;
  }
  .link-button:hover {
     /* background-color: #f094a37a;*/
@@ -200,6 +222,8 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      color: rgb(27, 22, 24);
      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
  }
+
+
  .intro-panel .link-button{
     display: flex;
     align-items: center;
