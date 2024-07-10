@@ -58,7 +58,7 @@
                     </button>
                     <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
                         <i class="fa-solid fa-microphone-lines" :style="{ color: live? '#ff2d55':'lightslategray' } "></i> 直播间
-                        <sup v-cloak v-if="live" class="blinking">LIVE!</sup>
+                        <sup v-cloak v-if="live" class="blinking">LIVE! </sup>
                     </button>
                     <button class="link-button" @click="copyQQToClipboard('519157459')">
                         <i class="fa-brands fa-qq" style="color:#ff2d55;"></i>
@@ -125,7 +125,7 @@
             <i style="padding-left:4px;" class="fa-solid fa-up-long"></i>
         </a>
         <div v-cloak v-if="showCopyConfirmation" class="copy-confirmation" :class="{show:showCopyConfirmation}">
-            <i class="fa-regular fa-circle-check"></i> &nbsp; "{{copiedSongName}}" 已复制到剪贴板！
+            <i class="fa-solid fa-circle-check"></i> &nbsp; "{{copiedSongName}}" 已复制到剪贴板！
         </div>
         <footer>
             <p>Designed by <a href="https://space.bilibili.com/1596728">Kid魔术师</a> |
