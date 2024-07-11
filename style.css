@@ -12,7 +12,7 @@
      min-height: 120vh;
      margin: 0;
      padding: 0;
-     background: linear-gradient(135deg, #fb0c43, #ffc371);
+     background: linear-gradient(135deg, #f1296cdb, #ffc36e);
      background-size: cover;
      background-attachment: fixed
  }
@@ -23,7 +23,7 @@
      display: flex;
      flex-direction: column;
      align-items: center;
-     margin-top: 30px;
+     margin-top: 50px;
      width: 100%;
  }
 
@@ -36,13 +36,14 @@
      border-radius: 20px;
      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
      margin-bottom: 25px;
+
  }
 
 
  .player {
      flex: 0;
-     padding: 20px;
-     width: 30%;
+     padding: 10px;
+     width: 35%;
      text-align: center;
      border-right: 1px solid #e0e0e0;
      padding: 20px;
@@ -118,11 +119,11 @@ img {
     cursor: pointer;
     border:none;
     border-radius: 15px;
-    transition: background 0.3s ease, transform 0.3s ease; /* Smooth transitions for hover effects */
+    transition: background 0.3s ease, transform 0.3s ease; 
 }
 .random-song-button:hover {
     background-color: #ffed2a24;
-transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
+transform: scale(1.05); 
 }
 @keyframes shake {
     0% { transform: translateX(0); }
@@ -200,7 +201,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
  }
 
  .intro-panel .link-button {
-     font-size: 19px;
+     font-size: 20px;
      border: 3px;
      border-color: #007bff;
      background-color: #fdfdfd;
@@ -214,6 +215,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      transition: background-color 0.3s ease;
      display: flex;
      align-items: center;
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.25);
  }
  .link-button:hover {
     /* background-color: #f094a37a;*/
@@ -271,7 +273,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
      font-weight: 400;
      margin: 0;
      line-height: 2.5;
-     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
      color: black;
 
  }
@@ -302,7 +304,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
     margin-bottom: 10px;
 }
 
-#world-clock .time-zone:last-child {
+#world-clock .time-zone:last-c/backhild {
     margin-bottom: 0;
 }
 
@@ -335,7 +337,7 @@ transform: scale(1.05); /* Slightly scale up the button for a subtle effect */
 
 
 .list-container {
-    padding-top: 20px;
+    padding-top: 5px;
     padding-left: 15px;
     padding-right: 15px;
     color: #333;
@@ -468,7 +470,7 @@ tr:hover {
     margin-left: auto;
     margin-right: auto;
     margin-top: auto;
-    top: 25px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #ff2d55ea;
@@ -482,104 +484,140 @@ tr:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: large;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+    font-size: 20px;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
     gap: 5px;
+    animation: returnUp 0.7s ease-in-out forwards;
 }
 .copy-confirmation i{
     color: mediumspringgreen;
 }
+
 .copy-confirmation.show {
-    opacity: 1; 
+    animation: dropDown 0.7s ease-out forwards;
+
+}
+@keyframes dropDown {
+    0% {
+        transform: translateX(-50%) translateY(-100%);
+        opacity: 0;
+    }
+    30% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
 }
 
-.back-to-top {
-    position: fixed;
-    bottom: 40px;
-    left: 40px;
-    background-color: #df2a2a;
-    color: white;
-    opacity: 0;
-    cursor: pointer;
-    font-size: 20px;
-    line-height:45px;
-    width: 45px;
-    height:45px;
-    visibility: hidden;
-    border-radius: 50%;
-    align-items: center;
-    text-align: center;
-    box-shadow: 0 2px 5x rgba(0,0,0,0.2);
-    /*text-align: center;*/
-    transition: background-color 0.3s;
+@keyframes returnUp {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    70% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(-100%);
+        opacity: 0;
+    }
 }
-.back-to-top:hover{
-    background-color: #0db6d0;
-}
- .blinking {
-     animation: blinkingText 1.2s infinite;
-     font-size: xx-small;
-     vertical-align: 120%;
-     text-align: left;
-     font-style: italic;
-     
- }
+
+  .back-to-top {
+      position: fixed;
+      bottom: 40px;
+      left: 40px;
+      background-color: #df2b2b;
+      color: white;
+      opacity: 0;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 46px;
+      width: 46px;
+      height: 45px;
+      visibility: hidden;
+      border-radius: 53%;
+      align-items: center;
+      text-align: center;
+      box-shadow: 2 2px 5px rgba(0, 0, 0, 0.3);
+      /*text-align: center;*/
+      transition: background-color 0.3s;
+  }
+
+  .back-to-top:hover {
+      background-color: #2c8af5;
+  }
+
+  .blinking {
+      animation: blinkingText 1.2s infinite;
+      font-size: xx-small;
+      vertical-align: 120%;
+      text-align: left;
+      font-style: italic;
+
+  }
+
   @keyframes blinkingText {
       0% {
-        color: rgb(245, 22, 96);
+          color: rgb(245, 22, 96);
       }
 
       50% {
-        color: transparent;
+          color: transparent;
       }
 
       100% {
-        color: rgb(245, 22, 96);
+          color: rgb(245, 22, 96);
       }
   }
 
- .back-to-top.show {
-     opacity: 1;
-     transform: trasnslateX(0);
-     visibility: visible;
- }
+  .back-to-top.show {
+      opacity: 1;
+      transform: trasnslateX(0);
+      visibility: visible;
+  }
 
- .text-container {
-     text-align: center;
-     font-size: 16px;
- }
+  .text-container {
+      text-align: center;
+      font-size: 16px;
+  }
 
- .back-to-top i {
-     margin-right: 5px;
- }
+  .back-to-top i {
+      margin-right: 5px;
+  }
 
- [v-cloak] {
-     display: none;
- }
+  [v-cloak] {
+      display: none;
+  }
 
- footer {
-     text-align: center;
-     margin-top: 20px;
-     padding: 15px;
- }
+  footer {
+      text-align: center;
+      margin-top: 20px;
+      padding: 15px;
+  }
 
- footer p {
-     margin: 0;
-     padding: 0;
-     color: #333;
- }
+  footer p {
+      margin: 0;
+      padding: 0;
+      color: #333;
+  }
 
- footer a {
-     color: #007bff;
-     /* Choose a link color that fits your design */
- }
+  footer a {
+      color: #007bff;
+      /* Choose a link color that fits your design */
+  }
 
- /* Optional: to stick the footer at the very bottom if the page content is short */
+  /* Optional: to stick the footer at the very bottom if the page content is short */
 
 
- @media only screen and (hover: none) and (pointer: coarse) {
+  @media only screen and (hover: none) and (pointer: coarse) {
 
-    .random-song-button {
+      .random-song-button {
         font-size: 16px;
         align-items: center;
         text-align: center;
