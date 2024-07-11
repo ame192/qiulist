@@ -89,14 +89,14 @@ var app = new Vue({
       tempInput.select();
       document.execCommand("copy");
       document.body.removeChild(tempInput);
-
       this.copiedSongName = songName;
       this.showCopyConfirmation = true;
+      this.$nextTick( ()=>{document.querySelector('.copy-confirmation').classList.add('show');});
 
       if (this.last_timer) clearTimeout(this.last_timer);
       this.last_timer = setTimeout(() => {
-        this.showCopyConfirmation = false;
-      }, 3000);
+        this.$nextTick(() => { document.querySelector('.copy-confirmation').classList.remove('show'); });
+      }, 2000);
       console.log('Song name copied to the clipboard:', songName);
     },
     copyToClipboard(songName) {
@@ -108,11 +108,12 @@ var app = new Vue({
       document.body.removeChild(tempInput);
       this.showCopyConfirmation = true;
       this.copiedSongName = "点歌 " + songName;
+      this.$nextTick( ()=>{document.querySelector('.copy-confirmation').classList.add('show');});
       if (this.last_timer) clearTimeout(this.last_timer);
       // Hide the confirmation message after 3 seconds (adjust as needed)
       this.last_timer = setTimeout(() => {
-        this.showCopyConfirmation = false;
-      }, 3000);
+        this.$nextTick(() => { document.querySelector('.copy-confirmation').classList.remove('show'); });
+      }, 2000);
       console.log('Song name copied to the clipboard:', songName);
     },
     parseCSV(file) {
@@ -158,7 +159,7 @@ var app = new Vue({
         const randomIndex = Math.floor(Math.random() * this.songs.length);
         const randomSong = this.songs[randomIndex];
         this.shakeButton();
-        setTimeout( () => {this.copyToClipboard(randomSong.name);}, 600);
+        setTimeout( () => {this.copyToClipboard(randomSong.name);}, 450);
         ;
       }
 

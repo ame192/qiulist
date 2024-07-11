@@ -10,8 +10,9 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.css" rel="stylesheet">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="description" content="BiliBili虚拟主播球球的歌单"
+    <meta name="keywords" content="球球,虚拟主播,虚拟歌姬,歌单,点歌,播放列表,戏腔"
+    <meta name="author" content="Kid.魔术师">
     <meta charset="utf-8" />
 </head>
 
@@ -124,7 +125,7 @@
         <a href="#" class="back-to-top" :class="{ 'show': showBackToTop } " @click="scrollToTop">
             <i style="padding-left:4px;" class="fa-solid fa-up-long"></i>
         </a>
-        <div v-cloak v-if="showCopyConfirmation" class="copy-confirmation" :class="{show:showCopyConfirmation}">
+        <div v-cloak v-if="showCopyConfirmation" class="copy-confirmation">
             <i class="fa-solid fa-circle-check"></i> &nbsp; "{{copiedSongName}}" 已复制到剪贴板！
         </div>
         <footer>
