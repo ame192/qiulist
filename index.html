@@ -106,7 +106,7 @@
                 </thead>
                 <tbody id="song-details">
                     <template v-for="(song, index) in filteredSongs">
-                        <tr :key="song.name">
+                        <tr :keys="song.name">
                             <td class="songname" @click="copyToClipboard(song.name)">{{song.name}}</td>
                             <td class="artist" @click="copyToClipboard(song.name)">{{song.artist}}</td>
                             <td class="genre" @click="copyToClipboard(song.name)">{{song.genre}}</td>
