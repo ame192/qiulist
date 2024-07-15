@@ -325,7 +325,7 @@ transform: scale(1.05);
 }
 
 .fa-house,
-.fa-bilibili {
+.content .fa-bilibili {
     color: #007bff
 }
 
@@ -352,7 +352,7 @@ transform: scale(1.05);
     margin-left: auto;
     margin-right: auto;
     max-width: 770px;
-    min-width: 770px;
+    min-width: 770p/fx;
     width: auto;
 }
 
@@ -463,6 +463,18 @@ tr:hover {
     cursor: pointer;
     border-radius: 10px;
     font-size: 22px;
+}
+.bplay-button{
+    padding: 3px 10px;
+    border: none;
+    background-color: #007aff;
+    color: white;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 22px;
+}
+.bplay-button:hover{
+    scale: 1.05;
 }
 
 .copy-confirmation {

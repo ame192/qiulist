@@ -176,8 +176,17 @@ var app = new Vue({
       const response = await fetch('/response.json');
       const data = await response.json();
       this.live = data.data.liveStatus;
+    },
+    toggleVideo(index) {
+      const song = this.filteredSongs[index];
+      if (!song.showVideo) {
+        const embedUrl = `https://player.bilibili.com/player.html?isOutside=true&bvid=${song.bvid}&p=1`;
+        this.$set(song, 'showVideo', true);
+        this.$set(song, 'videoEmbed', `<iframe src="${embedUrl}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="500px"></iframe>`);
+      } else {
+        this.$set(song, 'showVideo', false);
+      }
     }
-
   },
   mounted() {
     // CSV file path

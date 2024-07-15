@@ -105,15 +105,46 @@
                     </tr>
                 </thead>
                 <tbody id="song-details">
-                    <tr v-for="song in filteredSongs" :keys="song.name">
+                    <template v-for="(song, index) in filteredSongs">
+                        <tr :key="song.name">
+                            <td class="songname" @click="copyToClipboard(song.name)">{{song.name}}</td>
+                            <td class="artist" @click="copyToClipboard(song.name)">{{song.artist}}</td>
+                            <td class="genre" @click="copyToClipboard(song.name)">{{song.genre}}</td>
+                            <td class="cpbutton" @click="copyToClipboard(song.name)">
+                                <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
+                            </td>
+                            <td class="bplay" v-if="song.bvid !== '0'">
+                                <button class="bplay-button" @click="toggleVideo(index)">
+                                    <i class="fa-brands fa-bilibili"></i>
+                                </button>
+                            </td>
+                        </tr>
+                         <tr v-if="song.showVideo" :key="index + '-video'">
+                            <td :colspan="5">
+                                <div v-html="song.videoEmbed"></div>
+                            </td>
+                        </tr>
+                    </template>
+                    <!--
+                    <tr v-for="(song, index) in filteredSongs" :keys="song.name">
                         <td class="songname" @click="copyToClipboard(song.name)">{{song.name}}</td>
                         <td class="artist" @click="copyToClipboard(song.name)">{{song.artist}}</td>
                         <td class="genre" @click="copyToClipboard(song.name)">{{song.genre}}</td>
                         <td class="cpbutton" @click="copyToClipboard(song.name)">
                             <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                         </td>
-                        <td class="bplay"></td>
+                        <td class="bplay" v-if="song.bvid !== '0'">
+                         <button @click="toggleVideo(index)">
+                                <i class="fa fa-play-circle"></i>
+                            </button>
+                        </td>
                     </tr>
+                     <tr  v-if="song.showVideo" :key="index + '-video'">
+                        <td :colspan="5">
+                            <div v-html="song.videoEmbed"></div>
+                        </td>
+                    </tr>
+                    --> 
                 </tbody>
             </table>
 
