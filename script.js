@@ -23,6 +23,7 @@ var app = new Vue({
     shaking:false,
     currentVideoUrl:'',
     isMinimized:false,
+    isMaximized:false,
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
@@ -40,11 +41,7 @@ var app = new Vue({
         if (!song) return false;
         var nameMatch = song.name.includes(searchInputValue);
         var artistMatch = song.artist.includes(searchInputValue);
-        var genreMatch =  genreFilter=="" ||song.genre === genreFilter || '全部' === genreFilter;
-        //if ((nameMatch || artistMatch) && genreMatch) console.log("OK", song.name)
-        //if(nameMatch == undefined ) console.log("?");
-        //if(genreMatch == undefined ) console.log("?");
-        //if(artistMatch == undefined ) console.log("?");
+        var genreMatch =  genreFilter=="" ||song.genre === genreFilter || '全部' === genreFilter ;
         return (nameMatch || artistMatch) && genreMatch;
       });
     }
@@ -192,19 +189,33 @@ var app = new Vue({
     toggleMinimize() {
       const container = document.querySelector('.video-player-container');
       if (this.isMinimized) {
-        container.classList.remove('minimized');
+        container.classList.remove('minimized','large');
         container.classList.add('medium');
       } else {
         container.classList.remove('medium', 'large');
         container.classList.add('minimized');
+        this.isMaximized = false;
       }
       this.isMinimized = !this.isMinimized;
+    },
+    toggleMaximize() {
+      const container = document.querySelector('.video-player-container');
+      if (this.isMaximized) {
+        container.classList.remove('medium','large');
+        container.classList.add('medium');
+      } else {
+        container.classList.remove('medium', 'minimized');
+        container.classList.add('large');
+        this.isMinimized = false;
+      }
+      this.isMaximized = !this.isMaximized;
     },
     resizeVideo(size) {
       const container = document.querySelector('.video-player-container');
       container.classList.remove('small', 'medium', 'large', 'minimized');
       container.classList.add(size);
       this.isMinimized = false; // Reset minimize state when resizing
+      this.isMaximized = false;
     },
   },
   mounted() {

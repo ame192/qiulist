@@ -148,11 +148,11 @@
         <div class="video-player-container" v-if="currentVideoUrl">
             <div class="video-controls">
             <button @click="toggleMinimize" class="resize-button">
-                <i :class="isMinimized ? 'fa-solid fa-expand' : 'fa-solid fa-down-left-and-up-right-to-center'"></i>
+                <i :class="isMinimized ? 'fa-solid fa-expand' : 'fa-regular fa-window-minimize'"></i>
             </button>
 
-                    <button @click="resizeVideo('large')" class="resize-button">
-                    <i class="fa-solid fa-maximize"></i> <!-- Medium icon -->
+                    <button @click="toggleMaximize" class="resize-button">
+                    <i :class="isMaximized ? 'fa-solid fa-expand' :'fa-solid fa-maximize'"></i>
                 </button>
                 <button @click="stopVideo" class="resize-button">
                     <i class="fa-solid fa-xmark"></i>
