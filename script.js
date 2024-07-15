@@ -180,7 +180,7 @@ var app = new Vue({
     },
     
     toggleVideo(song) {
-      const embedUrl = `https://player.bilibili.com/player.html?isOutside=true&bvid=${song.bvid}&p=1`;
+      const embedUrl = `https://player.bilibili.com/player.html?&autoplay=true&muted=false&isOutside=true&bvid=${song.bvid}&p=1&as_wide=1&noEndPanel=1`;
       if (this.currentVideoUrl !== embedUrl) {
         this.currentVideoUrl = embedUrl;
       }
