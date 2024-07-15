@@ -636,19 +636,13 @@ tr:hover {
       width: 100%;
       height: 100%;
   }
-  .video-controls {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    top: -40px;
-    right: 20px;
-}
+
 .video-controls {
     display: flex;
     justify-content: space-between;
     position: absolute;
     top: -40px;
-    right: 20px;
+    right: 0px;
 }
 
 .video-controls button {
@@ -665,10 +659,16 @@ tr:hover {
 .video-controls button:hover {
     background-color: #005bb5;
 }
-
 .resize-button {
     margin-right: 10px;
 }
+
+.resize-button i {
+    font-size: 18px;
+}
+
+
+
 
 .video-player-container.small {
     width: 280px;

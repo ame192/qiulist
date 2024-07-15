@@ -147,10 +147,16 @@
 
         <div class="video-player-container" v-if="currentVideoUrl">
             <div class="video-controls">
-                <button @click="resizeVideo('small')" class="resize-button">Small</button>
-                <button @click="resizeVideo('medium')" class="resize-button">Medium</button>
-                <button @click="resizeVideo('large')" class="resize-button">Large</button>
-            </div>
+             <button @click="resizeVideo('small')" class="resize-button">
+            <i class="fa-solid fa-down-left-and-up-right-to-center"></i> <!-- Small icon -->
+        </button>
+        <button @click="resizeVideo('medium')" class="resize-button">
+            <i class="fa-solid fa-expand"></i> <!-- Medium icon -->
+        </button>
+        <button @click="resizeVideo('large')" class="resize-button">
+            <i class="fa-solid fa-expand-arrows-alt"></i> <!-- Large icon -->
+        </button>
+                            </div>
             <iframe :src="currentVideoUrl" scrolling="no" border="0" frameborder="no" framespacing="0"
                 allowfullscreen="true"></iframe>
 
