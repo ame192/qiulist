@@ -685,6 +685,7 @@ tr:hover {
 .video-player-container.large {
     width: 70%;
     height: 70%;
+    min-width: 768px;
 }
 
 
