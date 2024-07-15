@@ -22,6 +22,7 @@ var app = new Vue({
     live: false,
     shaking:false,
     currentVideoUrl:'',
+    isMinimized:false,
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
@@ -185,11 +186,26 @@ var app = new Vue({
         this.currentVideoUrl = embedUrl;
       }
     },
+    stopVideo() {
+        this.currentVideoUrl = '';
+    },
+    toggleMinimize() {
+      const container = document.querySelector('.video-player-container');
+      if (this.isMinimized) {
+        container.classList.remove('minimized');
+        container.classList.add('medium');
+      } else {
+        container.classList.remove('medium', 'large');
+        container.classList.add('minimized');
+      }
+      this.isMinimized = !this.isMinimized;
+    },
     resizeVideo(size) {
       const container = document.querySelector('.video-player-container');
-      container.classList.remove('small', 'medium', 'large');
+      container.classList.remove('small', 'medium', 'large', 'minimized');
       container.classList.add(size);
-    }
+      this.isMinimized = false; // Reset minimize state when resizing
+    },
   },
   mounted() {
     // CSV file path

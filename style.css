@@ -464,16 +464,20 @@ tr:hover {
     border-radius: 10px;
     font-size: 22px;
 }
+
 .bplay-button{
     padding: 3px 10px;
     border: none;
-    background-color: #007aff;
+    background-color: #f31246;
     color: white;
     cursor: pointer;
     border-radius: 10px;
     font-size: 22px;
 }
+.copy-button:hover,
 .bplay-button:hover{
+
+    background-color: #005bb5;
     scale: 1.05;
 }
 
@@ -646,7 +650,7 @@ tr:hover {
 }
 
 .video-controls button {
-    background-color: #007aff;
+    background-color: #ff0055;
     color: white;
     border: none;
     border-radius: 5px;
@@ -668,9 +672,7 @@ tr:hover {
 }
 
 
-
-
-.video-player-container.small {
+.video-player-container.minimized {
     width: 150px;
     height: 0px;
 }
