@@ -40,9 +40,9 @@
                     <div class="progress-bar"></div>
                 </div>
                 <div class="controls">
-                    <button> <i class="fas fa-stop" @click="stopRotationSpeed()"></i> </button>
-                    <button class="play-button" @click="setRotationSpeed('+')"> <i
-                            class="fa-regular fa-circle-play"></i></button>
+                    <button> <i class="fa-solid fa-list-ul" @click="scrollToList()"></i> </button>
+                    <button class="play-button" @click="setRotationSpeed()"> 
+                    <i :class="fast==true ?'fa-regular fa-circle-pause':'fa-regular fa-circle-play'"></i></button>
                     <button> <i class="fas fa-forward" @click="setRotationFast()"></i></button>
                 </div>
                 <button v-on:click="copyRandomSongToClipboard" class="random-song-button" :class="{ shake:shaking}">

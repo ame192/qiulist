@@ -60,6 +60,7 @@
      overflow: hidden;
      border-radius: 50%;
      animation: normal-rotate 10s linear infinite;
+     transition: all 2.0s;
  }
 
  .profile-image img {
@@ -80,7 +81,7 @@
  .progress-bar {
      height: 5px;
      background: #ff2d55;
-     width: 65%;
+     width: 45%;
  }
 
  .controls {
@@ -97,6 +98,10 @@
     cursor: pointer;
     color: #f94163;
     padding: 10px;
+}
+.controls button:hover{
+    scale:1.10;
+    transition: all 0.3s;
 }
 
 .controls .play-button {
@@ -147,6 +152,10 @@ transform: scale(1.05);
 @keyframes normal-rotate {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+@keyframes back-rotate {
+    from { transform: rotate(360deg); }
+    to { transform: rotate(0deg); }
 }
 
 .normal-rotate {

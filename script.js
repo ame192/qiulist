@@ -46,7 +46,6 @@ var app = new Vue({
       });
     }
   },
-
   methods: {
     getTimeForZone(timezone) {
       const options = { hour: '2-digit', minute: '2-digit' };
@@ -58,25 +57,19 @@ var app = new Vue({
       this.timeCentralEurope = this.getTimeForZone('Europe/Berlin');
       this.timePacific = this.getTimeForZone('America/Los_Angeles');
     },
-    setRotationSpeed(speed) {
-
-      this.fast = true;
-      this.supriseText = "救救球球！";
-      var speed = Math.random() > 0.5 ? '0.35s' : '0.1s';
-      if (this.firstTime) {
-        this.firstTime = false;
-        this.rotationSpeed = '0.35s';
-        return;
+    setRotationSpeed(speed) 
+    {
+      if(this.fast){
+        this.fast = false;
+        this.rotationSpeed = '10s';
       }
-      this.rotationSpeed = speed;
     },
-    setRotationFast() {
+    setRotationFast() 
+    {
       this.fast = true;
-      this.supriseText = "救救球球！";
       var speed = '0.05s';
       this.rotationSpeed = speed;
     },
-
     stopRotationSpeed() {
       this.fast = false;
       this.rotationSpeed = '10s';
@@ -144,14 +137,18 @@ var app = new Vue({
         behavior: 'smooth'
       });
     },
+    scrollToList(){
+      window.scrollTo({
+        top:450, left: 0,
+        behavior: 'smooth'
+      });
+    },
     handleScroll() {
       if (window.scrollY != 0) {
         this.showBackToTop = true;
       } else {
         this.showBackToTop = false;
       }
-      const scroolTop = window.scrollY || document.documentElement.scrollTop;
-      this.showClock = scroolTop < this.tablePosition;
     },
     copyRandomSongToClipboard() {
       if (this.songs.length > 0) {
