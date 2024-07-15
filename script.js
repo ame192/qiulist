@@ -21,6 +21,7 @@ var app = new Vue({
     last_timer: null,
     live: false,
     shaking:false,
+    currentVideoUrl:'',
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);
@@ -177,15 +178,17 @@ var app = new Vue({
       const data = await response.json();
       this.live = data.data.liveStatus;
     },
-    toggleVideo(index) {
-      const song = this.filteredSongs[index];
-      if (!song.showVideo) {
-        const embedUrl = `https://player.bilibili.com/player.html?isOutside=true&bvid=${song.bvid}&p=1`;
-        this.$set(song, 'showVideo', true);
-        this.$set(song, 'videoEmbed', `<iframe src="${embedUrl}" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" width="100%" height="500px"></iframe>`);
-      } else {
-        this.$set(song, 'showVideo', false);
+    
+    toggleVideo(song) {
+      const embedUrl = `https://player.bilibili.com/player.html?isOutside=true&bvid=${song.bvid}&p=1`;
+      if (this.currentVideoUrl !== embedUrl) {
+        this.currentVideoUrl = embedUrl;
       }
+    },
+    resizeVideo(size) {
+      const container = document.querySelector('.video-player-container');
+      container.classList.remove('small', 'medium', 'large');
+      container.classList.add(size);
     }
   },
   mounted() {

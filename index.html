@@ -10,9 +10,8 @@
     <link rel="manifest" href="/site.webmanifest">
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.4.2/css/all.css" rel="stylesheet">
-    <meta name="description" content="BiliBili虚拟主播球球的歌单"
-    <meta name="keywords" content="球球,虚拟主播,虚拟歌姬,歌单,点歌,播放列表,戏腔"
-    <meta name="author" content="Kid.魔术师">
+    <meta name="description" content="BiliBili虚拟主播球球的歌单" <meta name="keywords" content="球球,虚拟主播,虚拟歌姬,歌单,点歌,播放列表,戏腔"
+        <meta name="author" content="Kid.魔术师">
     <meta charset="utf-8" />
 </head>
 
@@ -58,7 +57,8 @@
                         <i class="fa-brands fa-bilibili" style="color: #ff2d55"></i> 个人空间
                     </button>
                     <button class="link-button" @click="navigateTo('https://live.bilibili.com/30315337')">
-                        <i class="fa-solid fa-microphone-lines" :style="{ color: live? '#ff2d55':'lightslategray' } "></i> 直播间
+                        <i class="fa-solid fa-microphone-lines"
+                            :style="{ color: live? '#ff2d55':'lightslategray' } "></i> 直播间
                         <sup v-cloak v-if="live" class="blinking">LIVE! </sup>
                     </button>
                     <button class="link-button" @click="copyQQToClipboard('519157459')">
@@ -72,11 +72,11 @@
                 <div class="intro-background">
                 </div>
                 <div class="intro-text">
-                <p>爱若有声音，不止一场海啸 </br>
-                听歌全凭感觉来，只有音乐最安全。 </br>
-                全职非专业反差杂谈鸽势~</p>
+                    <p>爱若有声音，不止一场海啸 </br>
+                        听歌全凭感觉来，只有音乐最安全。 </br>
+                        全职非专业反差杂谈鸽势~</p>
                 </div>
-                
+
 
             </div>
         </div>
@@ -114,37 +114,17 @@
                                 <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
                             </td>
                             <td class="bplay" v-if="song.bvid !== '0'">
-                                <button class="bplay-button" @click="toggleVideo(index)">
+                                <button class="bplay-button" @click="toggleVideo(song)">
                                     <i class="fa-brands fa-bilibili"></i>
                                 </button>
                             </td>
                         </tr>
-                         <tr v-if="song.showVideo" :key="index + '-video'">
+                        <tr v-if="song.showVideo" :key="index + '-video'">
                             <td :colspan="5">
                                 <div v-html="song.videoEmbed"></div>
                             </td>
                         </tr>
                     </template>
-                    <!--
-                    <tr v-for="(song, index) in filteredSongs" :keys="song.name">
-                        <td class="songname" @click="copyToClipboard(song.name)">{{song.name}}</td>
-                        <td class="artist" @click="copyToClipboard(song.name)">{{song.artist}}</td>
-                        <td class="genre" @click="copyToClipboard(song.name)">{{song.genre}}</td>
-                        <td class="cpbutton" @click="copyToClipboard(song.name)">
-                            <button class="copy-button"><i class="fa-regular fa-copy"></i></button>
-                        </td>
-                        <td class="bplay" v-if="song.bvid !== '0'">
-                         <button @click="toggleVideo(index)">
-                                <i class="fa fa-play-circle"></i>
-                            </button>
-                        </td>
-                    </tr>
-                     <tr  v-if="song.showVideo" :key="index + '-video'">
-                        <td :colspan="5">
-                            <div v-html="song.videoEmbed"></div>
-                        </td>
-                    </tr>
-                    --> 
                 </tbody>
             </table>
 
@@ -164,6 +144,18 @@
                 <a href="http://beian.miit.gov.cn/" target="_blank">粤ICP备2024213013号</a>
             </p>
         </footer>
+
+        <div class="video-player-container" v-if="currentVideoUrl">
+            <div class="video-controls">
+                <button @click="resizeVideo('small')" class="resize-button">Small</button>
+                <button @click="resizeVideo('medium')" class="resize-button">Medium</button>
+                <button @click="resizeVideo('large')" class="resize-button">Large</button>
+            </div>
+            <iframe :src="currentVideoUrl" scrolling="no" border="0" frameborder="no" framespacing="0"
+                allowfullscreen="true"></iframe>
+
+        </div>
+
     </div>
 
     <script src="clipboard.min.js"></script>
